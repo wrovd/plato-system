@@ -1,0 +1,21 @@
+export default function Register() {
+  return (
+    <div className="min-h-screen bg-[#F4F3F1] grid place-items-center px-4">
+      <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.07)]">
+        <h1 className="text-2xl font-extrabold">Регистрация</h1>
+        <p className="mt-2 text-sm text-black/60">
+          Доступ откроет администратор после проверки заявки.
+        </p>
+        <div className="mt-5 space-y-3">
+          <input className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none" placeholder="Имя" />
+          <input className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none" placeholder="Email" />
+          <input className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none" placeholder="Пароль" type="password" />
+          <button className="w-full rounded-2xl bg-black text-white py-3 font-semibold">Отправить заявку</button>
+          <div className="text-sm text-black/60">
+            Уже есть аккаунт? <a className="text-black font-semibold" href="/plato-system/login">Войти</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
