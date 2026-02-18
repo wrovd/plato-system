@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Register() {
   return (
     <div className="min-h-screen bg-[#F4F3F1] grid place-items-center px-4">
@@ -11,8 +13,12 @@ export default function Register() {
           <input className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none" placeholder="Email" />
           <input className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none" placeholder="Пароль" type="password" />
           <button className="w-full rounded-2xl bg-black text-white py-3 font-semibold">Отправить заявку</button>
+
           <div className="text-sm text-black/60">
-            Уже есть аккаунт? <a className="text-black font-semibold" href="/plato-system/login">Войти</a>
+            Уже есть аккаунт?{" "}
+            <Link className="text-black font-semibold" to="/login">
+              Войти
+            </Link>
           </div>
         </div>
       </div>
