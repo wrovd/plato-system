@@ -15,6 +15,8 @@ import {
   ShieldCheck,
   ClipboardList,
   Map,
+  Package,
+  Plus,
 } from "lucide-react";
 
 type PillProps = {
@@ -112,8 +114,7 @@ export default function Home() {
       ? window.matchMedia("(max-width: 768px)").matches
       : false;
 
-  // Пока выключаем вообще всё: включать будем поэтапно.
-  // Чтобы потом включать — просто меняем disabled на false и добавляем onClick navigate("...").
+  // Всё выключено, кроме модуля "Товары"
   const ALL_DISABLED = true;
   const hintCommon = "в разработке";
 
@@ -131,25 +132,39 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Верхние кнопки сейчас выключены */}
           <div className="flex items-center gap-3 pt-2">
             <IconCircleButton
               icon={<LayoutGrid className="w-5 h-5" />}
               label="Схема"
-              disabled={ALL_DISABLED}
+              disabled={true}
               hint={hintCommon}
-              onClick={() => navigate("/search")}
             />
             <IconCircleButton
               icon={<Search className="w-5 h-5" />}
               label="Поиск"
-              disabled={ALL_DISABLED}
+              disabled={true}
               hint={hintCommon}
-              onClick={() => navigate("/search")}
             />
           </div>
         </div>
 
-        {/* Быстрые действия */}
+        {/* Товары — ЕДИНСТВЕННЫЙ активный модуль */}
+        <SectionHeader title="Товары" />
+        <div className="grid grid-cols-2 gap-3 md:gap-4">
+          <ActionPill
+            icon={<Package className="w-6 h-6" />}
+            title="Найти товар"
+            onClick={() => navigate("/products")}
+          />
+          <ActionPill
+            icon={<Plus className="w-6 h-6" />}
+            title="Создать товар"
+            onClick={() => navigate("/products/new")}
+          />
+        </div>
+
+        {/* Остальное — выключено */}
         <SectionHeader title="Быстрые действия" />
         <div className="grid grid-cols-2 gap-3 md:gap-4">
           <ActionPill
@@ -157,18 +172,15 @@ export default function Home() {
             title="Сканировать QR-код"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/search")}
           />
           <ActionPill
             icon={<Barcode className="w-6 h-6" />}
             title="Сканировать штрихкод"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/search")}
           />
         </div>
 
-        {/* Сборка заказов */}
         <SectionHeader title="Сборка заказов" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
           <ActionPill
@@ -176,18 +188,15 @@ export default function Home() {
             title="Система сборщика"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/picker")}
           />
           <ActionPill
             icon={<History className="w-6 h-6" />}
             title="История действий"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/history")}
           />
         </div>
 
-        {/* Поиск товаров */}
         <SectionHeader title="Поиск товаров" />
         <div className="grid grid-cols-2 gap-3 md:gap-4">
           <ActionPill
@@ -195,18 +204,15 @@ export default function Home() {
             title="Глобальный поиск"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/search")}
           />
           <ActionPill
             icon={<Map className="w-6 h-6" />}
             title="Найти коробку"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/search")}
           />
         </div>
 
-        {/* Прочее */}
         <SectionHeader title="Прочее" />
         <div className="grid grid-cols-2 gap-3 md:gap-4">
           <ActionPill
@@ -214,48 +220,42 @@ export default function Home() {
             title="Создать коробку"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/boxes/new")}
           />
           <ActionPill
             icon={<LayoutGrid className="w-6 h-6" />}
             title="Создать ячейку"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/cells/new")}
           />
           <ActionPill
             icon={<Printer className="w-6 h-6" />}
             title="Печать этикеток"
-            disabled={true} // всегда disabled на данном этапе
+            disabled={true}
             hint={isMobile ? "только ПК" : hintCommon}
-            onClick={() => navigate("/print")}
           />
           <ActionPill
             icon={<BarChart3 className="w-6 h-6" />}
             title="Статистика"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/stats")}
           />
           <ActionPill
             icon={<ShieldCheck className="w-6 h-6" />}
             title="Роли и доступы"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/roles")}
           />
           <ActionPill
             icon={<Settings className="w-6 h-6" />}
             title="Настройки"
             disabled={ALL_DISABLED}
             hint={hintCommon}
-            onClick={() => navigate("/settings")}
           />
         </div>
 
         <NoticeCard
           title="Статус"
-          text="Сейчас все действия на главной отключены. Будем включать модули поэтапно после внедрения базы и авторизации."
+          text="Сейчас активен только модуль «Товары». Все остальные разделы выключены и будут включаться поэтапно после внедрения базы и логики."
         />
         <NoticeCard
           title="Правило мобильной версии"

@@ -12,6 +12,8 @@ import StatsPage from "./pages/Stats";
 import RolesPage from "./pages/Roles";
 import SettingsPage from "./pages/Settings";
 import PrintLabelsPage from "./pages/PrintLabels";
+import ProductsPage from "./pages/Products";
+import CreateProductPage from "./pages/CreateProduct";
 
 function NotFound() {
   return (
@@ -48,6 +50,8 @@ export default function App() {
         <Route path="/roles" element={<RolesPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/print" element={<PrintLabelsPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/new" element={<CreateProductPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
